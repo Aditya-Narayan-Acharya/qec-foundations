@@ -1,4 +1,4 @@
-score = 8
+score = 82
 if score >= 90:
     print("A")
 elif score >= 80:

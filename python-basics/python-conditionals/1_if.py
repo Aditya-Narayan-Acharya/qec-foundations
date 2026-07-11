@@ -5,6 +5,8 @@ if age >= 18:
 
 print("This line always runs")
 
+#if only works as a true or false statement.
+
 age = 18
 
 if age >= 18:
