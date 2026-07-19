@@ -1,10 +1,10 @@
-# a = [1,2,3]
-# b = a
+a = [1,2,3]
+b = a
 
-# b.append(4)
+b.append(4)
 
-# print(a)
-# print(b)
+print(a)
+print(b)
 # Upto this there is no copying of list, so changes in b will affect a.
 
 
