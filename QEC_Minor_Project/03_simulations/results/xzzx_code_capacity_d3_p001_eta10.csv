@@ -1,0 +1,2 @@
+code,distance,noise_model,physical_error_rate,noise_bias,pX,pY,pZ,shots,seed,detection_events,raw_logical_flips,logical_failures_after_decoding,logical_error_rate,wilson_95_lower,wilson_95_upper,detector_error_mechanisms
+XZZX,3,Single final data-error layer,0.01,10,0.0008333333333333334,0.0008333333333333334,0.008333333333333333,100000,20261115,6335,1202,45,0.00045,0.0003363479184671838,0.000602032032728611,7
