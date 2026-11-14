@@ -76,3 +76,19 @@ simplified simulation model.
    controlled modelling assumption.
 5. Our simulation will be a simplified model,
    not an exact reproduction of Google's experiment.
+
+
+## 6. Model actually implemented
+
+The final transmon-inspired comparison uses T1 = 20 microseconds
+and T2_CPMG = 30 microseconds as an effective phenomenological
+coherence parameter.
+
+A Pauli-twirled approximation is applied once to the data qubits
+immediately before final measurement, using a 921 ns effective
+interval.
+
+This is a simplified final-layer decoherence proxy. It is not
+a full circuit-level reproduction of the experimental device.
+The experimental component error probabilities listed above
+are not added to this final comparison.

@@ -1,42 +1,75 @@
+# Effective Relaxation and Dephasing Model
 
-# Energy Relaxation Model
+## 1. Physical mechanism
 
-## Physical mechanism
-
-Energy relaxation is the transition:
+Energy relaxation corresponds to:
 
 |1> -> |0>
 
-## Experimental parameter
+The reference relaxation time is:
 
 T1 = 20 microseconds
 
-## Mathematical model
+## 2. Relaxation probability
+
+For an interval t:
 
 P_relax(t) = 1 - exp(-t/T1)
 
-## Calculated probabilities
+## 3. Effective coherence parameter
 
-| Operation | Duration (ns) | P_relax |
-|---|---:|---:|
-| Single-qubit gate | 25 | 0.001249 |
-| CZ gate | 34 | 0.001699 |
-| Measurement | 500 | 0.024690 |
-| Reset interval | 160 | 0.007968 |
+The reference reports T2_CPMG = 30 microseconds.
 
-## Interpretation
+Because CPMG coherence is not automatically equivalent to
+ordinary T2, we use this value only as an effective
+phenomenological parameter:
 
-Relaxation probability increases with
-the duration of exposure to energy relaxation.
+T2_eff = 30 microseconds
 
-These values represent the relaxation
-contribution only, not total operation errors.
+We do not claim to have independently determined intrinsic T_phi.
 
-## Modelling limitation
+## 4. Pauli-twirled approximation
 
-Stim's stochastic Pauli representation
-does not preserve the non-unital nature
-of amplitude damping exactly.
+Define:
 
-A Pauli-twirled approximation may be used
-for the initial simulation.
+lambda1 = exp(-t/T1)
+lambda2 = exp(-t/T2_eff)
+
+The effective Pauli probabilities are:
+
+pX = pY = (1 - lambda1)/4
+
+pZ = (1 + lambda1 - 2*lambda2)/4
+
+pI = 1 - pX - pY - pZ
+
+This approximation preserves the longitudinal and transverse
+Bloch-vector decay factors of the effective model, but does not
+preserve the non-unital translation of amplitude damping.
+
+## 5. Effective probabilities for a 921 ns interval
+
+For the final comparison:
+
+- pX = 0.01125145
+- pY = 0.01125145
+- pZ = 0.00386532
+- Total error probability = 0.02636822
+
+## 6. Simulation implementation
+
+The resulting Pauli channel is applied once to each data qubit
+immediately before final data-qubit measurement.
+
+This is a final-layer decoherence proxy. It is not a simulation
+of continuous relaxation and dephasing throughout the syndrome-
+extraction circuit.
+
+## 7. Limitations
+
+- The model is phenomenological.
+- T2_CPMG is used as an effective coherence parameter.
+- Pauli twirling removes non-unital amplitude-damping behaviour.
+- Gate, measurement and reset errors are not explicitly added
+  to this final comparison.
+- This is not a full circuit-level transmon simulation.
